@@ -3,7 +3,7 @@ while True:
 
     match user_action:
         case "Add":
-            todo = input("Enter a todo: ") + "\n".title()
+            todo = input("Enter a todo: ") + "\n"
 
             file = open("./todos.txt", "r")
             todos = file.readlines()
@@ -21,18 +21,34 @@ while True:
             file.close()
 
             for index, item in enumerate(todos):
-                print(f"{index + 1} - {item}")
+                print(f"{index + 1} - {item.title()}")
 
         case "Edit":
+            file = open("./todos.txt", "r")
+            todos = file.readlines()
+            file.close()
+
             number = int(input("Number of todo to edit: ")) - 1
-            todos[number] = input("Enter a new todo: ").title()
+            todos[number] = input("Enter a new todo: ") + "\n"
+
+            file = open("./todos.txt", "w")
+            file.writelines(todos)
+            file.close()
 
         case "Complete":
+            file = open("./todos.txt", "r")
+            todos = file.readlines()
+            file.close()
+
             for index, item in enumerate(todos):
-                print(f"{index + 1} - {item}")
+                print(f"{index + 1} - {item.title()}")
 
             number = int(input("Number of todo completed: ")) - 1
             todos.pop(number)
+
+            file = open("./todos.txt", "w")
+            file.writelines(todos)
+            file.close()
 
         case "Exit":
             print("See you!")
