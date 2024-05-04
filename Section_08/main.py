@@ -19,6 +19,9 @@ while True:
             todos = file.readlines()
             file.close()
 
+            # List comprehension
+            # todos = [item.strip("\n" for todo in todos)]
+
             for index, todo in enumerate(todos):
                 print(f"{index + 1} - {todo.strip()}")
 
