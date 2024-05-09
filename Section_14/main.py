@@ -1,10 +1,10 @@
-def get_todos(filepath):
+def get_todos(filepath="./todos.txt"):
     with open(filepath, "r") as file:
         todos = file.readlines()
     return todos
 
 
-def write_todos(filepath, todos_arg):
+def write_todos(todos_arg, filepath="./todos.txt"):
     with open(filepath, "w") as file:
         file.writelines(todos_arg)
 
@@ -15,16 +15,16 @@ while True:
     if user_input.startswith("Add"):
         todo = user_input[4:]
 
-        todos = get_todos("./todos.txt")
+        todos = get_todos()
 
         todo = user_input[4:].title() + "\n"
         todos.append(todo)
 
-        write_todos("./todos.txt", todos)
+        write_todos(todos)
 
     elif user_input.startswith("Show"):
 
-        todos = get_todos("./todos.txt")
+        todos = get_todos()
 
         for index, todo in enumerate(todos):
             print(f"{index + 1} - {todo.strip()}")
@@ -33,10 +33,10 @@ while True:
         try:
             number = int(user_input[4:])
 
-            todos = get_todos("./todos.txt")
+            todos = get_todos()
             todos[number - 1] = input("Enter a new todo: ").title() + "\n"
 
-            write_todos("./todos.txt", todos)
+            write_todos(todos)
 
         except ValueError:
             print("Your command is not valid.")
@@ -45,10 +45,10 @@ while True:
         try:
             number = int(user_input[9:])
 
-            todos = get_todos("./todos.txt")
+            todos = get_todos()
             todos.pop(number - 1)
 
-            write_todos("./todos.txt", todos)
+            write_todos(todos)
 
         except ValueError:
             print("Your command is not valid.")
