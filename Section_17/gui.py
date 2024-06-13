@@ -4,7 +4,10 @@ import functions
 
 layout = [
     [sg.Text("Type in a to-do")],
-    [sg.InputText(tooltip="Enter to-do"), sg.Button("Add")],
+    [
+        sg.InputText(tooltip="Enter to-do", key="todo"),
+        sg.Button("Add", key="add"),
+    ],
 ]
 
 # label = sg.Text("Type in a to-do")
@@ -13,5 +16,17 @@ layout = [
 # window = sg.Window("My To-Do App", layout=[[label], [input_box, add_button]])
 
 window = sg.Window("My To-Do App", layout)
-window.read()
+
+
+while True:
+
+    event, values = window.read()
+    if event == "add":
+        todos = functions.get_todos()
+        todos.append(values["todo"] + "\n")
+        functions.write_todos(todos)
+    elif sg.WIN_CLOSED:
+        break
+
+    print(event, values)
 window.close()
