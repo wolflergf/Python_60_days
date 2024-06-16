@@ -13,7 +13,11 @@ layout = [
             values=functions.get_todos(), key="todos", enable_events=True, size=[45, 10]
         )
     ],
-    [sg.Button("Edit", key="edit")],
+    [
+        sg.Button("Edit", key="edit"),
+        sg.Button("Complete", key="complete"),
+        sg.Button("Exit", key="exit"),
+    ],
 ]
 
 # label = sg.Text("Type in a to-do")
@@ -44,8 +48,19 @@ while True:
             functions.write_todos(todos)
             window["todos"].update(values=todos)
 
+        case "complete":
+            todo_to_complete = values["todos"][0]
+            todos = functions.get_todos()
+            todos.remove(todo_to_complete)
+            functions.write_todos(todos)
+            window["todos"].update(values=todos)
+            window["todo"].update(value="")
+
         case "todos":
             window["todo"].update(value=values["todos"][0])
+
+        case "exit":
+            break
 
         case sg.WIN_CLOSED:
             break

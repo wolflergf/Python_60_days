@@ -1,7 +1,2 @@
-Home
-Clear
-par
-Dez
-dois
-cinco
-casa
+Limpar casa
+Format
