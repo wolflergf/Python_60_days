@@ -1,8 +1,7 @@
-House
-Fish
-Peixe
-oi
+Home
+Clear
 par
-um
+Dez
 dois
 cinco
+casa
