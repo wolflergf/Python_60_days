@@ -1,2 +1,2 @@
-Limpar casa
-Format
+Clear the Home
+Format the computer
